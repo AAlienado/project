@@ -10,5 +10,6 @@ config/development/contracts.json
 config/development/*.sol.js
 config/test/contracts.json
 build
-build/contracts/*.json
+.\build\contracts\*.json
+build\contracts\*.json
 dist
