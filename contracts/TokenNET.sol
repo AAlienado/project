@@ -78,7 +78,7 @@ contract TokenNET is Ownable, PausableToken {
      * @param _from address The address which you want to send tokens from
      * @param _value uint256 The amount of token to be burned
      */
-    function burnFrom(address _from, uint256 _value) public {
+    function burnFrom(address _from, uint256 _value) public whennotpaused{
       require(_value <= allowed[_from][msg.sender]);
       // Should https://github.com/OpenZeppelin/zeppelin-solidity/issues/707 be accepted,
       // this function needs to emit an event with the updated approval.
