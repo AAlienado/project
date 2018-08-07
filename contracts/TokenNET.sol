@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-pragma solidity ^0.4.21;
+pragma solidity 0.4.24;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "zeppelin-solidity/contracts/token/ERC20/PausableToken.sol";
@@ -26,7 +26,7 @@ import "zeppelin-solidity/contracts/math/SafeMath.sol";
 */
 
 contract TokenNET is Ownable, PausableToken {
-    string constant public name = "Outers Coin";
+    string constant public name = "Out Coin";
     string constant public symbol = "OUT";
     // solhint-disable-next-line
     uint8 constant public decimals = 18; // 18 decimals is the strongly suggested default, avoid changing it
@@ -47,11 +47,9 @@ contract TokenNET is Ownable, PausableToken {
           Initializes contract with initial supply tokens to the creator of the contract and
           allocates restriceted amount of tokens to some addresses
     */
-	constructor() public {
-
-	    totalSupply_ = (3500 * 10 ** 6) * 10 ** uint256(decimals);
-		balances[msg.sender] = totalSupply_;
-
+    constructor() public {
+        totalSupply_ = (430 * 10 ** 6) * 10 ** uint256(decimals);
+        balances[msg.sender] = totalSupply_;
     }
 
     /**
@@ -59,18 +57,7 @@ contract TokenNET is Ownable, PausableToken {
      * @param _value The amount of token to be burned.
      */
     function burn(uint256 _value) public {
-      _burn(msg.sender, _value);
-    }
-
-    function _burn(address _who, uint256 _value) internal {
-      require(_value <= balances[_who]);
-      // no need to require value <= totalSupply, since that would imply the
-      // sender's balance is greater than the totalSupply, which *should* be an assertion failure
-
-      balances[_who] = balances[_who].sub(_value);
-      totalSupply_ = totalSupply_.sub(_value);
-      emit Burn(_who, _value);
-      emit Transfer(_who, address(0), _value);
+        _burn(msg.sender, _value);
     }
 
     /**
@@ -78,14 +65,23 @@ contract TokenNET is Ownable, PausableToken {
      * @param _from address The address which you want to send tokens from
      * @param _value uint256 The amount of token to be burned
      */
-    function burnFrom(address _from, uint256 _value) public whennotpaused{
-      require(_value <= allowed[_from][msg.sender]);
+    function burnFrom(address _from, uint256 _value) public whennotpaused {
+        require(_value <= allowed[_from][msg.sender]);
       // Should https://github.com/OpenZeppelin/zeppelin-solidity/issues/707 be accepted,
       // this function needs to emit an event with the updated approval.
-      allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
-      emit Approval(_from, msg.sender, allowed[_from][msg.sender]);
-      _burn(_from, _value);
+        allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+        emit Approval(_from, msg.sender, allowed[_from][msg.sender]);
+        _burn(_from, _value);
     }
 
+    function _burn(address _who, uint256 _value) internal {
+        require(_value <= balances[_who]);
+      // no need to require value <= totalSupply, since that would imply the
+      // sender's balance is greater than the totalSupply, which *should* be an assertion failure
 
+        balances[_who] = balances[_who].sub(_value);
+        totalSupply_ = totalSupply_.sub(_value);
+        emit Burn(_who, _value);
+        emit Transfer(_who, address(0), _value);
+    }
 }
