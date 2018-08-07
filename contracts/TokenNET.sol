@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-pragma solidity 0.4.24;
+pragma solidity ^0.4.23;
 
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "zeppelin-solidity/contracts/token/ERC20/PausableToken.sol";
@@ -56,7 +56,7 @@ contract TokenNET is Ownable, PausableToken {
      * @dev Burns a specific amount of tokens.
      * @param _value The amount of token to be burned.
      */
-    function burn(uint256 _value) public {
+    function burn(uint256 _value) public whenNotPaused {
         _burn(msg.sender, _value);
     }
 
@@ -65,7 +65,7 @@ contract TokenNET is Ownable, PausableToken {
      * @param _from address The address which you want to send tokens from
      * @param _value uint256 The amount of token to be burned
      */
-    function burnFrom(address _from, uint256 _value) public whennotpaused {
+    function burnFrom(address _from, uint256 _value) public whenNotPaused {
         require(_value <= allowed[_from][msg.sender]);
       // Should https://github.com/OpenZeppelin/zeppelin-solidity/issues/707 be accepted,
       // this function needs to emit an event with the updated approval.
@@ -74,7 +74,7 @@ contract TokenNET is Ownable, PausableToken {
         _burn(_from, _value);
     }
 
-    function _burn(address _who, uint256 _value) internal {
+    function _burn(address _who, uint256 _value) internal whenNotPaused{
         require(_value <= balances[_who]);
       // no need to require value <= totalSupply, since that would imply the
       // sender's balance is greater than the totalSupply, which *should* be an assertion failure
