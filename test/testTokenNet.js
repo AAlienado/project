@@ -194,7 +194,7 @@ contract('StandardToken', function(accounts) {
 
       describe('when the spender has enough approved balance', function () {
         beforeEach(async function () {
-          await this.token.approve(spender, 100, { from: OWNER });
+          await this.token.approve(spender, TOTALTOKENS, { from: OWNER });
         });
 
         describe('when the OWNER has enough balance', function () {
