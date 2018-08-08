@@ -98,7 +98,7 @@ contract('StandardToken', function(accounts) {
           console.log(" logs[0]  --"+logs[0].args.from);
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
-          assert.equal(logs[0].args.OWNER, OWNER);
+          assert.equal(logs[0].args.owner, OWNER);
           assert.equal(logs[0].args.spender, spender);
           assert(logs[0].args.value.eq(amount));
         });
@@ -134,7 +134,7 @@ contract('StandardToken', function(accounts) {
 
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
-          assert.equal(logs[0].args.OWNER, OWNER);
+          assert.equal(logs[0].args.owner, OWNER);
           assert.equal(logs[0].args.spender, spender);
           assert(logs[0].args.value.eq(amount));
         });
@@ -179,7 +179,7 @@ contract('StandardToken', function(accounts) {
 
         assert.equal(logs.length, 1);
         assert.equal(logs[0].event, 'Approval');
-        assert.equal(logs[0].args.OWNER, OWNER);
+        assert.equal(logs[0].args.owner, OWNER);
         assert.equal(logs[0].args.spender, spender);
         assert(logs[0].args.value.eq(amount));
       });
@@ -198,7 +198,7 @@ contract('StandardToken', function(accounts) {
         });
 
         describe('when the OWNER has enough balance', function () {
-          const amount = 100;
+          const amount = TOTALTOKENS;
 
           it('transfers the requested amount', async function () {
             await this.token.transferFrom(OWNER, to, amount, { from: spender });
@@ -286,7 +286,7 @@ contract('StandardToken', function(accounts) {
 
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
-          assert.equal(logs[0].args.OWNER, OWNER);
+          assert.equal(logs[0].args.owner, OWNER);
           assert.equal(logs[0].args.spender, spender);
           assert(logs[0].args.value.eq(0));
         });
@@ -322,7 +322,7 @@ contract('StandardToken', function(accounts) {
 
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
-          assert.equal(logs[0].args.OWNER, OWNER);
+          assert.equal(logs[0].args.owner, OWNER);
           assert.equal(logs[0].args.spender, spender);
           assert(logs[0].args.value.eq(0));
         });
@@ -367,7 +367,7 @@ contract('StandardToken', function(accounts) {
 
         assert.equal(logs.length, 1);
         assert.equal(logs[0].event, 'Approval');
-        assert.equal(logs[0].args.OWNER, OWNER);
+        assert.equal(logs[0].args.owner, OWNER);
         assert.equal(logs[0].args.spender, spender);
         assert(logs[0].args.value.eq(0));
       });
@@ -386,7 +386,7 @@ contract('StandardToken', function(accounts) {
 
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
-          assert.equal(logs[0].args.OWNER, OWNER);
+          assert.equal(logs[0].args.owner, OWNER);
           assert.equal(logs[0].args.spender, spender);
           assert(logs[0].args.value.eq(amount));
         });
@@ -422,7 +422,7 @@ contract('StandardToken', function(accounts) {
 
           assert.equal(logs.length, 1);
           assert.equal(logs[0].event, 'Approval');
-          assert.equal(logs[0].args.OWNER, OWNER);
+          assert.equal(logs[0].args.owner, OWNER);
           assert.equal(logs[0].args.spender, spender);
           assert(logs[0].args.value.eq(amount));
         });
@@ -466,7 +466,7 @@ contract('StandardToken', function(accounts) {
 
         assert.equal(logs.length, 1);
         assert.equal(logs[0].event, 'Approval');
-        assert.equal(logs[0].args.OWNER, OWNER);
+        assert.equal(logs[0].args.owner, OWNER);
         assert.equal(logs[0].args.spender, spender);
         assert(logs[0].args.value.eq(amount));
       });
