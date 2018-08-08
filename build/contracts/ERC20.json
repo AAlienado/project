@@ -1,5 +1,6 @@
 {
   "contractName": "ERC20",
+  
   "abi": [
     {
       "constant": true,

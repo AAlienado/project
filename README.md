@@ -21,12 +21,43 @@ npm install -g ganache-cli
 
 ```
 npm install -g truffle 
-* Babel-core: npm install --save-dev babel-core
-* Babel-register: npm install babel-register --save-dev 
-* Babel-es2015: npm install --save-dev babel-preset-es2015
-* Babel-stage-2: npm install --save-dev babel-preset-stage-2
-* Babel-stage-3: npm install --save-dev babel-preset-stage-3
-* Babel-polyfill: npm install --save babel-polyfill
+```
+
+* Babel-core: add next line into command console 
+
+```
+npm install --save-dev babel-core
+```
+
+* Babel-register: add next line into command console 
+
+```
+npm install babel-register --save-dev 
+```
+
+* Babel-es2015: add next line into command console
+
+```
+npm install --save-dev babel-preset-es2015
+```
+
+* Babel-stage-2: add next line into command console
+
+```
+npm install --save-dev babel-preset-stage-2
+```
+
+* Babel-stage-3: add next line into command console
+
+```
+npm install --save-dev babel-preset-stage-3
+```
+
+* Babel-polyfill: add next line into command console
+
+```
+npm install --save babel-polyfill
+```
 
 ### Installing
 
