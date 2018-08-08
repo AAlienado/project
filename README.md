@@ -10,8 +10,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-* Node: https://nodejs.org/en/
-* Ganache-cli: npm install -g ganache-cli
+* Node: Download from https://nodejs.org/en/
+* Ganache-cli: add next line to a comad console
+```
+npm install -g ganache-cli
+```
 * Truffle: npm install -g truffle 
 * Babel-core: npm install --save-dev babel-core
 * Babel-register: npm install babel-register --save-dev 
