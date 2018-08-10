@@ -45,7 +45,7 @@ contract('StandardToken', function(accounts) {
       const to = RECIPIENT;
 
       describe('when the sender does not have enough balance', function () {
-        const amount = 101;
+        const amount = (431 * 10 ** 6) * 10 ** DECIMALS;
 
         it('reverts', async function () {
           await assertRevert(this.token.transfer(to, amount, { from: OWNER }));
@@ -229,7 +229,7 @@ contract('StandardToken', function(accounts) {
         });
 
         describe('when the OWNER does not have enough balance', function () {
-          const amount = 101;
+          const amount = (431 * 10 ** 6) * 10 ** DECIMALS;
 
           it('reverts', async function () {
             await assertRevert(this.token.transferFrom(OWNER, to, amount, { from: spender }));
