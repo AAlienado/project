@@ -59,6 +59,24 @@ npm install --save-dev babel-preset-stage-3
 npm install --save babel-polyfill
 ```
 
+* chai: add next line into command console
+
+```
+npm install chai
+```
+
+* chai-as-promised: add next line into command console
+
+```
+npm install chai-as-promised
+```
+
+* chai-bignumber: add next line into command console
+
+```
+npm install chai-bignumber
+```
+
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
