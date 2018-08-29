@@ -74,7 +74,7 @@ contract TokenNET is Ownable, PausableToken {
         _burn(_from, _value);
     }
 
-    function _burn(address _who, uint256 _value) internal whenNotPaused{
+    function _burn(address _who, uint256 _value) internal whenNotPaused {
         require(_value <= balances[_who]);
       // no need to require value <= totalSupply, since that would imply the
       // sender's balance is greater than the totalSupply, which *should* be an assertion failure

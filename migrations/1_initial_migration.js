@@ -1,5 +1,5 @@
-var Token = artifacts.require("./TokenNET.sol");
+var Migrations = artifacts.require("./Migrations.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Token);
+  deployer.deploy(Migrations);
 };
