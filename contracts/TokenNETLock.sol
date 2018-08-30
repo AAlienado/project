@@ -52,6 +52,7 @@ contract TokenTimelock {
     )
     public
     {
+        require(releaseTime > block.timestamp);
         uint256 totalTokens = _numTokens;
         uint256 id = indexReference[_beneficiary];
         if (id != 0) {// checks if beneficiary address exists
@@ -78,7 +79,9 @@ contract TokenTimelock {
 
         uint256 amount =0;
         for (uint i = 0; i < tokensLockList.length; i++) {
+            uint256 tokensLock = token.balanceOf(this);
             amount = tokensLockList[i].numTokens;
+            require(tokensLock >= amount);
             require(amount > 0);
             token.safeTransfer(tokensLockList[i].beneficiary, amount);
         }
