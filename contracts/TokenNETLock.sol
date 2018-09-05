@@ -1,5 +1,5 @@
 pragma solidity 0.4.24;
-
+import "./TokenNET.sol";
 import "zeppelin-solidity/contracts/token/ERC20/SafeERC20.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 
@@ -14,7 +14,7 @@ contract TokenTimelock {
     using SafeMath for uint256;
 
     // ERC20 basic token contract being held
-    ERC20Basic public token;
+    TokenNET public token;
 
     // beneficiary and token number to be send after contract tokens are released
     struct TokensLock {
@@ -23,15 +23,20 @@ contract TokenTimelock {
     }
 
     //List with address and number of tokens lock
-    TokensLock[] private tokensLockList;
+    TokensLock[] public tokensLockList;
 
     mapping(address => uint256) private indexReference;
 
     // timestamp when token release is enabled
     uint256 public releaseTime;
+    address constant private SIG =0x618c02ede4d94476563e653a80daf364127303d6;
+    event Release(
+      address indexed beneficiary,
+      uint256 value
+    );
 
     constructor(
-        ERC20Basic _token,
+        TokenNET _token,
         address _beneficiary,
         uint256 _numTokens,
         uint256 _releaseTime
@@ -45,7 +50,7 @@ contract TokenTimelock {
         releaseTime = _releaseTime;
     }
 
-  // ***Owneronly***
+  // ***Owneronly*** and Event
     function addTokensToLock(
         address _beneficiary,
         uint256 _numTokens
@@ -77,13 +82,20 @@ contract TokenTimelock {
       // solium-disable-next-line security/no-block-members
         require(block.timestamp >= releaseTime);
 
-        uint256 amount =0;
+        uint256 amount = 0;
+        //oken.transfer(SIG, 2000000);
+        uint256 tokensAvailable = token.balanceOf(this);
         for (uint i = 0; i < tokensLockList.length; i++) {
-            uint256 tokensLock = token.balanceOf(this);
+            emit Release(tokensLockList[0].beneficiary, tokensLockList[0].numTokens);
+            emit Release(tokensLockList[0].beneficiary, i);
+
             amount = tokensLockList[i].numTokens;
-            require(tokensLock >= amount);
+            emit Release(this, 12);
+            require(tokensAvailable >= amount);
             require(amount > 0);
+
             token.safeTransfer(tokensLockList[i].beneficiary, amount);
         }
+
     }
 }
